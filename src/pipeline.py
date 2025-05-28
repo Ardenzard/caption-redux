@@ -82,7 +82,9 @@ def apply_caption(config: Config, source_path: str, caption_img: str, ext: str, 
         motion_caption(source_path, temp_output_path, caption_img, work_dir, config, ext == "gif")
 
         if ext == "gif" or config.force_gif:
-            convert_to_gif(temp_output_path, output_path, work_dir)
+            new_output_path = os.path.join(work_dir, __tmp_result_name + ".gif")
+            convert_to_gif(temp_output_path, new_output_path, work_dir)
+            output_path = new_output_path
 
     return output_path
 
